@@ -76,9 +76,10 @@ def update_annot(ind):
     pos = sc.get_offsets()[ind["ind"][0]]
     annot.xy = pos
 
-    #text = "{}, {}".format(" ".join(list(map(str,ind["ind"]))), " ".join([names[n] for n in ind["ind"]]))
-    annot.set_text('Annotation')
-    annot.get_bbox_patch().set_facecolor('yellow')
+    #text = "{}\n{}".format(" ".join(str(pos)), " ".join([names[n] for n in ind["ind"]]))
+    text = "{}\n{}\n{}".format(" ".join([names[n] for n in ind["ind"]]), "Diseases Present: EBOLA", "Concern Level: Normal")
+    annot.set_text(text)
+    annot.get_bbox_patch().set_facecolor('black')
     annot.get_bbox_patch().set_alpha(0.4)
 
 
@@ -94,6 +95,12 @@ def hover(event):
             if vis:
                 annot.set_visible(False)
                 fig.canvas.draw_idle()
+
+#def diseasecubes():
+    # Store all of the disease cube states
+
+#def concernlevel():
+# Define a value for how close a city is to outbreaking and change... color or size
 
 fig.canvas.mpl_connect("motion_notify_event", hover)
 
