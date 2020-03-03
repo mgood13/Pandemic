@@ -75,9 +75,9 @@ def update_annot(ind):
 
     pos = sc.get_offsets()[ind["ind"][0]]
     annot.xy = pos
-    text = "{}, {}".format(" ".join(list(map(str,ind["ind"]))),
-                           " ".join([names[n] for n in ind["ind"]]))
-    annot.set_text(text)
+
+    #text = "{}, {}".format(" ".join(list(map(str,ind["ind"]))), " ".join([names[n] for n in ind["ind"]]))
+    annot.set_text('Annotation')
     annot.get_bbox_patch().set_facecolor('yellow')
     annot.get_bbox_patch().set_alpha(0.4)
 
