@@ -23,7 +23,6 @@ count = 0
 with f:
     reader = csv.reader(f)
     for row in reader:
-        count += 1
         city_dictionary[row[1]] = {'Color': row[0], 'Latitude': row[2], 'Longitude': row[3],
                                    'Population': row[4], 'X': row[5], 'Y': row[6], 'ID': row[7], 'Connections': row[8],
                                    'Disease State': color_dict}
@@ -66,10 +65,29 @@ img = plt.imread("BlackMarble_2016_01deg.jpg")
 fig, ax = plt.subplots(figsize=(16,6))
 ax.imshow(img, extent=[0, 200, 0, 100])
 ax.set_title('WELCOME TO PANDEMIC. OR... THE REAL WORLD')
+
 #for color in x:
 #    plt.scatter(x[color], y[color], s=2, c=color)
-sc = plt.scatter(xmapped[0:12], ymapped[0:12], s=10, c='blue')
-sc1 = plt.scatter(xmapped[13:24], ymapped[13:24], s=10, c='yellow')
+
+categories = np.array([])
+for i in xmapped:
+    if count < 12:
+        categories = np.append(categories, [0])
+    else:
+        categories = np.append(categories, [1])
+        print("hi")
+    count += 1
+print(categories.dtype)
+categories = categories.astype(int)
+print(categories.dtype)
+
+colormap = np.array(['blue', 'yellow'])
+
+#plt.scatter(a[0], a[1], s=100, c=colormap[categories])
+
+
+sc = plt.scatter(xmapped[0:24], ymapped[0:24], s=10, c=colormap[categories])
+#sc1 = plt.scatter(xmapped[13:24], ymapped[13:24], s=10, c='yellow')
 
 annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",
                     bbox=dict(boxstyle="round", fc="b"),
